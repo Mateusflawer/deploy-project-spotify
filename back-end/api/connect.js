@@ -1,3 +1,6 @@
+// JavaScript Assincrono
+// await async
+// Fullfilled
 import { MongoClient } from "mongodb";
 
 const URI =
@@ -5,6 +8,7 @@ const URI =
 
 const client = new MongoClient(URI);
 
-const db = client.db("spotify");
+export const db = client.db("spotify");
+// const songCollection = await db.collection("songs").find({}).toArray();
 
-export default db;
+// console.log(songCollection);

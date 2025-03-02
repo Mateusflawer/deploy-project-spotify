@@ -1,5 +1,6 @@
-✅ 1 - Construir a API
-✅ 2 - Conexão com o banco de dados
-✅ 3 - Conectar o front com o back
-4 - Lógicas do player
-5 - GitHub e Deploy
+- Construir a API
+
+- Conexão com o Banco de Dados
+- Conectar o Front com o Back
+- Lógicas do Player
+- GitHub e Deploy
