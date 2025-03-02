@@ -1,0 +1,10 @@
+import axios from "axios";
+
+const URL = "http://localhost:3001";
+
+const artistsArray = await axios
+  .get(`${URL}/api/artists`)
+  .then((res) => res.data);
+const songsArray = await axios.get(`${URL}/api/songs`).then((res) => res.data);
+
+export { artistsArray, songsArray };
