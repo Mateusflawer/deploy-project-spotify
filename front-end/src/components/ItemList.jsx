@@ -2,11 +2,8 @@ import React from "react";
 import SingleItem from "./SingleItem";
 import { Link, useLocation } from "react-router-dom";
 
-const ItemList = ({ title, items, itemsArray, path, idPath }) => {
-  // console.log(items);
-  // console.log(useLocation());
+const ItemList = ({ title, items, itemsArray, path, idPath, style }) => {
   const { pathname } = useLocation();
-  // console.log(pathname);
   const isHome = pathname === "/";
   const finalItems = isHome ? items : Infinity;
 
@@ -29,13 +26,10 @@ const ItemList = ({ title, items, itemsArray, path, idPath }) => {
           .filter((currentValue, index) => index < finalItems)
           .map((currObj, index) => (
             <SingleItem
-              // id={currObj.id}
-              // name={currObj.name}
-              // image={currObj.image}
-              // banner={currObj.banner}
               {...currObj}
               idPath={idPath}
               key={`${title}-${index}`}
+              style={style}
             />
           ))}
       </div>

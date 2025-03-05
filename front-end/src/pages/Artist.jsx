@@ -3,14 +3,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlay } from "@fortawesome/free-solid-svg-icons";
 import { Link, useParams } from "react-router-dom";
 import SongList from "../components/SongList";
-import { artistArray } from "../assets/database/artists";
-import { songsArray } from "../assets/database/songs";
+import { artistsArray } from "../assets/database/artists.js";
+import { songsArray } from "../assets/database/songs.js";
 
 const Artist = () => {
   const { id } = useParams();
-  // console.log(useParams());
 
-  const { name, banner } = artistArray.filter(
+  const { name, banner } = artistsArray.filter(
     (currentArtistObj) => currentArtistObj._id === id
   )[0];
 
@@ -23,29 +22,24 @@ const Artist = () => {
   );
   const randomIdFromArtist = songsArrayFromArtist[randomIndex]._id;
 
-  // console.log(randomIdFromArtist);
-  // console.log(Math.floor(Math.random() * (songsArrayFromArtist.length - 1)));
-  // console.log("Tamanho do Array:" + songsArrayFromArtist.length);
-
-  // console.log(songsArrayFromArtist);
-
   return (
-    <div className="artist">
-      <div
-        className="artist__header"
-        style={{
-          backgroundImage: `linear-gradient(to bottom, var(--_shade), var(--_shade)),url(${banner})`,
-        }}
-      >
-        <h2 className="artist__title">{name}</h2>
+    <div>
+      <div className="artist">
+        <div
+          className="artist__header"
+          style={{
+            backgroundImage: `linear-gradient(to bottom, var(--_shade), var(--_shade)),url(${banner})`,
+          }}
+        >
+          <h2 className="artist__title">{name}</h2>
+        </div>
+
+        <div className="artist__body">
+          <h2>Populares</h2>
+
+          <SongList songsArray={songsArrayFromArtist} />
+        </div>
       </div>
-
-      <div className="artist__body">
-        <h2>Populares</h2>
-
-        <SongList songsArray={songsArrayFromArtist} />
-      </div>
-
       <Link to={`/song/${randomIdFromArtist}`}>
         <FontAwesomeIcon
           className="single-item__icon single-item__icon--artist"

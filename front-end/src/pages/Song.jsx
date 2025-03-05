@@ -1,27 +1,25 @@
 import React from "react";
 import Player from "../components/Player";
 import { Link, useParams } from "react-router-dom";
-import { songsArray } from "../assets/database/songs";
-import { artistArray } from "../assets/database/artists";
+import { songsArray } from "../assets/database/songs.js";
+import { artistsArray } from "../assets/database/artists.js";
+import { useRef } from "react";
 
 const Song = () => {
   const { id } = useParams();
-  // console.log(id);
+  const songDiv = useRef();
 
   const { image, name, duration, artist, audio } = songsArray.filter(
     (currentSongObj) => currentSongObj._id === id
   )[0];
-  // console.log(songObj);
 
-  const artistObj = artistArray.filter(
+  const artistObj = artistsArray.filter(
     (currentArtistObj) => currentArtistObj.name === artist
   )[0];
-  // console.log(artistObj);
 
   const songsArrayFromArtist = songsArray.filter(
     (currentSongObj) => currentSongObj.artist === artist
   );
-  // console.log(songsArrayFromArtist);
 
   const randomIndex = Math.floor(
     Math.random() * (songsArrayFromArtist.length - 1)
@@ -35,7 +33,7 @@ const Song = () => {
   const randomId2FromArtist = songsArrayFromArtist[randomIndex2]._id;
 
   return (
-    <div className="song">
+    <div className="song" ref={songDiv}>
       <div className="song__container">
         <div className="song__image-container">
           <img src={image} alt={`Imagem da música ${name}`} />
@@ -53,10 +51,10 @@ const Song = () => {
         </Link>
 
         <Player
+          audio={audio}
           duration={duration}
           randomIdFromArtist={randomIdFromArtist}
           randomId2FromArtist={randomId2FromArtist}
-          audio={audio}
         />
 
         <div>
